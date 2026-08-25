@@ -1,9 +1,14 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-COPY *.csproj ./
-RUN dotnet restore
-COPY . ./
-RUN dotnet publish -c Release -o /app/out
+
+# Copy project file and restore dependencies
+COPY ["WebWomen/WebWomen.csproj", "WebWomen/"]
+RUN dotnet restore "WebWomen/WebWomen.csproj"
+
+# Copy remaining files and publish specific project
+COPY . .
+WORKDIR "/src/WebWomen"
+RUN dotnet publish "WebWomen.csproj" -c Release -o /app/out
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
