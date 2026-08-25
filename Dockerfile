@@ -8,7 +8,11 @@ RUN dotnet restore "WebWomen/WebWomen.csproj"
 # Copy remaining files and publish specific project
 COPY . .
 WORKDIR "/src/WebWomen"
-RUN dotnet publish "WebWomen.csproj" -c Release -o /app/out
+# Build solution without -o flag
+RUN dotnet build "WebWomen.sln" -c Release
+
+# Publish specific project to output directory
+RUN dotnet publish "WebWomen/WebWomen.csproj" -c Release -o /app/out
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
