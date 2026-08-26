@@ -1,18 +1,13 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-# Copy project file and restore dependencies
-COPY ["womenapi/WebWomen.csproj", "womenapi/"]
-RUN dotnet restore "womenapi/WebWomen.csproj"
+# Copy csproj directly from root
+COPY ["WebWomen.csproj", "./"]
+RUN dotnet restore "WebWomen.csproj"
 
-# Copy remaining files and publish specific project
+# Copy all source files and publish
 COPY . .
-WORKDIR "/src/womenapi"
-# Build solution without -o flag
-RUN dotnet build "WebWomen.sln" -c Release
-
-# Publish specific project to output directory
-RUN dotnet publish "womenapi/WebWomen.csproj" -c Release -o /app/out
+RUN dotnet publish "WebWomen.csproj" -c Release -o /app/out
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
