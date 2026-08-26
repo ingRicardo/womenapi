@@ -30,7 +30,16 @@ builder.Services.AddSwaggerGen();
 
 // Configure EF Core with PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    npgsqlOptions =>
+    {
+        // Enables resilience against brief network glitches between Render and Supabase
+        npgsqlOptions.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: TimeSpan.FromSeconds(10),
+                    errorCodesToAdd: null);
+    }
+    ));
 
 
 var app = builder.Build();
