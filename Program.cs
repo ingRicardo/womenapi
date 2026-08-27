@@ -12,7 +12,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:4200") // Your Angular app origin
+                          policy.WithOrigins("http://localhost:4200",
+                                             "https://women-kp5su10hv-riky3.vercel.app/") // Your Angular app origin
                                 .AllowAnyHeader()
                                 .AllowAnyMethod();
                       });
