@@ -13,11 +13,13 @@ builder.Services.AddCors(options =>
                       policy =>
                       {
                           policy.WithOrigins("http://localhost:4200",
-                                             "https://women-kp5su10hv-riky3.vercel.app/") // Your Angular app origin
+                                             "https://women-kp5su10hv-riky3.vercel.app") // Your Angular app origin
                                 .AllowAnyHeader()
                                 .AllowAnyMethod();
                       });
+
 });
+
 
 
 
