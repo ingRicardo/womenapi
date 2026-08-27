@@ -13,6 +13,7 @@ builder.Services.AddCors(options =>
                       policy =>
                       {
                           policy.WithOrigins("http://localhost:4200",
+                                             "https://women-*.vercel.app",
                                              "https://women-kp5su10hv-riky3.vercel.app") // Your Angular app origin
                                 .AllowAnyHeader()
                                 .AllowAnyMethod();
@@ -58,6 +59,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// 2. Enable CORS Middleware BEFORE MapControllers/UseAuthorization
+app.UseRouting();
 // 3. Enable CORS middleware BEFORE UseAuthorization and MapControllers
 app.UseCors(MyAllowSpecificOrigins);
 
