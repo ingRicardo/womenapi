@@ -10,14 +10,22 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("http://localhost:4200",
-                                             "https://women-*.vercel.app",
-                                             "https://women-kp5su10hv-riky3.vercel.app") // Your Angular app origin
-                                .AllowAnyHeader()
-                                .AllowAnyMethod();
-                      });
+        policy =>
+        {
+            policy.SetIsOriginAllowed(origin =>
+            {
+                // Allow local development
+                if (origin.StartsWith("http://localhost:")) return true;
+
+                // Allow any Vercel domain under your account or project
+                if (origin.EndsWith(".vercel.app")) return true;
+
+                return false;
+            })
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials(); // Keep if passing credentials/auth headers
+        });
 
 });
 
