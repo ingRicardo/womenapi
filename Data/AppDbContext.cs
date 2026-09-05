@@ -36,7 +36,7 @@ namespace WebWomen.Data
             // Woman Entity Configuration
             modelBuilder.Entity<Woman>(entity =>
             {
-                entity.ToTable("woman");
+                entity.ToTable("womanv1");
 
                 entity.HasKey(e => e.Id);
 
