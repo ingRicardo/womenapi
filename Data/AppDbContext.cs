@@ -73,6 +73,26 @@ namespace WebWomen.Data
             });
 
         }
-     }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // Check if options are already configured (e.g., from Program.cs) to avoid overwriting them
+            if (!optionsBuilder.IsConfigured)
+            {
+                // If configuring manually, you would pass the connection string here
+            }
+
+            // Add timeouts and retries to the Npgsql options context
+            optionsBuilder.UseNpgsql(o =>
+            {
+                o.CommandTimeout(60); // Set timeout to 60 seconds
+                o.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: System.TimeSpan.FromSeconds(10),
+                    errorCodesToAdd: null
+                );
+            });
+        }
+
+    }
 
 }
