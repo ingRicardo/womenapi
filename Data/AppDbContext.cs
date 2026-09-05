@@ -42,7 +42,8 @@ namespace WebWomen.Data
 
                 entity.Property(e => e.Id)
                       .HasColumnName("id")
-                      .UseIdentityAlwaysColumn();
+                      .UseIdentityByDefaultColumn(); // SERIAL maps to Identity by default in EF Core
+
 
                 entity.Property(e => e.Name).HasColumnName("name").IsRequired();
                 entity.Property(e => e.Avatar).HasColumnName("avatar");
