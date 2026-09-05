@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebWomen.Models
 {
-    [Table("woman")]
+    [Table("womanv1")]
     public class Woman
     {
         [Key]

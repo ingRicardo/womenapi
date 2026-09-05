@@ -42,9 +42,7 @@ namespace WebWomen.Controllers
         [HttpPost]
         public async Task<ActionResult<Woman>> CreateWoman(Woman woman)
         {
-            // Let PostgreSQL assign the auto-increment ID
-            woman.Id = 0;
-
+            
             _context.Women.Add(woman);
             await _context.SaveChangesAsync();
 
