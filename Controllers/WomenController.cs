@@ -42,7 +42,10 @@ namespace WebWomen.Controllers
         [HttpPost]
         public async Task<ActionResult<Woman>> CreateWoman(Woman woman)
         {
-            
+
+            // Temporary debug line to see if the method executes twice
+            System.Diagnostics.Debug.WriteLine($"CreateWoman called at {DateTime.UtcNow.ToLongTimeString()}");
+
             _context.Women.Add(woman);
             await _context.SaveChangesAsync();
 
