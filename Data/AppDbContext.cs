@@ -57,7 +57,7 @@ namespace WebWomen.Data
 
             modelBuilder.Entity<WomanRate>(entity =>
             {
-                entity.ToTable("woman_rate");
+                entity.ToTable("woman_ratev1");
                 entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Id).HasColumnName("id").UseIdentityAlwaysColumn();
