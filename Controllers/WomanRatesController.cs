@@ -47,27 +47,24 @@ namespace WebWomen.Controllers
         [HttpGet("average/{womanId}")]
         public async Task<ActionResult<WomanRatingSummaryDto>> GetAverageRateForWoman(int womanId)
         {
-            // This executes exactly ONE optimized query against the database
-            var summary = await _context.Women
-                .Where(w => w.Id == womanId)
-                .Select(w => new WomanRatingSummaryDto
-                {
-                    WomanId = w.Id,
-                    Name = w.Name,
-                    // Calculate the count and average inside SQL server side
-                    TotalRatings = w.WomanRates.Count(),
-                    AverageRate = w.WomanRates.Any()
-                        ? Math.Round(w.WomanRates.Average(r => r.Rate), 2)
-                        : 0.0
-                })
-                .FirstOrDefaultAsync();
-
-            if (summary == null)
+            var woman = await _context.Women.FindAsync(womanId);
+            if (woman == null)
             {
                 return NotFound(new { Message = $"Woman with ID {womanId} was not found." });
             }
 
-            return Ok(summary);
+            var ratings = _context.WomanRates.Where(r => r.WomanId == womanId);
+
+            var totalCount = await ratings.CountAsync();
+            var average = totalCount > 0 ? await ratings.AverageAsync(r => r.Rate) : 0.0;
+
+            return new WomanRatingSummaryDto
+            {
+                WomanId = woman.Id,
+                Name = woman.Name,
+                AverageRate = Math.Round(average, 2),
+                TotalRatings = totalCount
+            };
         }
 
         // GET: api/WomanRates/averages

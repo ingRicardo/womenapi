@@ -16,9 +16,6 @@ namespace WebWomen.Models
         [Column("name")]
         public string Name { get; set; } = string.Empty;
 
-
-        public virtual ICollection<WomanRate> WomanRates { get; set; } = [];
-
         [Column("avatar")]
         public string? Avatar { get; set; }
 
