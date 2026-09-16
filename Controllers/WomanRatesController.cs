@@ -82,6 +82,7 @@ namespace WebWomen.Controllers
                         ? Math.Round(_context.WomanRates.Where(r => r.WomanId == w.Id).Average(r => r.Rate), 2)
                         : 0.0
                 })
+                .OrderByDescending(s => s.AverageRate) // <-- Sort highest to lowest
                 .ToListAsync();
 
             return Ok(summary);
