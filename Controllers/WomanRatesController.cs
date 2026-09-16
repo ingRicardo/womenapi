@@ -78,9 +78,10 @@ namespace WebWomen.Controllers
                     WomanId = w.Id,
                     Name = w.Name,
                     TotalRatings = _context.WomanRates.Count(r => r.WomanId == w.Id),
-                    AverageRate = _context.WomanRates.Where(r => r.WomanId == w.Id).Any()
+                   /* AverageRate = _context.WomanRates.Where(r => r.WomanId == w.Id).Any()
                         ? Math.Round(_context.WomanRates.Where(r => r.WomanId == w.Id).Average(r => r.Rate), 2)
-                        : 0.0
+                        : 0.0*/
+                    AverageRate = Math.Round(_context.WomanRates.Average(r => (double?)r.Rate) ?? 0.0, 2)
                 })
                 .OrderByDescending(s => s.AverageRate) // <-- Sort highest to lowest
                 .ToListAsync();
