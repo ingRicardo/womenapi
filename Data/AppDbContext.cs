@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using WebWomen.Models;
 using Microsoft.EntityFrameworkCore;
-
 namespace WebWomen.Data
 {
     public class AppDbContext : DbContext
@@ -11,6 +10,8 @@ namespace WebWomen.Data
         public DbSet<User> Users => Set<User>();
         public DbSet<Woman> Women => Set<Woman>(); // <--- ADD THIS LINE
         public DbSet<WomanRate> WomanRates => Set<WomanRate>();
+        public DbSet<BillService> BillServices => Set<BillService>();
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -32,6 +33,7 @@ namespace WebWomen.Data
                 entity.Property(e => e.Role).HasColumnName("role");
                 entity.Property(e => e.Email).HasColumnName("email");
             });
+
 
             // Woman Entity Configuration
             modelBuilder.Entity<Woman>(entity =>
@@ -72,6 +74,24 @@ namespace WebWomen.Data
                       .OnDelete(DeleteBehavior.Cascade);
             });
 
+            modelBuilder.Entity<BillService>(
+                entity =>
+                {
+                    entity.ToTable("billservice");
+                   
+                    entity.HasKey(e => e.Id);
+
+                    entity.Property(e => e.Id)
+                          .HasColumnName("id")
+                          .UseIdentityByDefaultColumn(); // SERIAL maps to Identity by default in EF Core
+                    entity.Property(e => e.Name).HasColumnName("name");
+                    entity.Property(e => e.Email).HasColumnName("email");
+                    entity.Property(e => e.ServiceName).HasColumnName("servicename");
+                    entity.Property(e => e.Cost).HasColumnName("cost");
+                    entity.Property(e => e.DueDate).HasColumnName("duedate");
+                    entity.Property(e => e.Type).HasColumnName("type");
+
+                });
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
