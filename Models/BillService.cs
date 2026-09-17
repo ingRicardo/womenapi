@@ -34,5 +34,9 @@ namespace WebWomen.Models
         [MaxLength(100)]
         [Column("type")]
         public string? Type { get; set; }
+
+        [MaxLength(50)]
+        [Column("status")]
+        public string? Status { get; set; }
     }
 }
