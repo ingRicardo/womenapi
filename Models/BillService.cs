@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace WebWomen.Models
 {
@@ -41,6 +42,7 @@ namespace WebWomen.Models
 
         [MaxLength(100)]
         [Column("idempotency_key")]
+        [JsonPropertyName("idempotencyKey")]
         public string? Idempotency_key { get; set; }
     }
 }
