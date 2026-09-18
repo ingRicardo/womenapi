@@ -8,7 +8,7 @@ namespace WebWomen.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<User> Users => Set<User>();
-        public DbSet<Woman> Women => Set<Woman>(); // <--- ADD THIS LINE
+        public DbSet<Woman> Women => Set<Woman>();
         public DbSet<WomanRate> WomanRates => Set<WomanRate>();
         public DbSet<BillService> BillServices => Set<BillService>();
 
@@ -18,9 +18,8 @@ namespace WebWomen.Data
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.ToTable("users"); // PostgreSQL table name
+                entity.ToTable("users");
 
-                // entity.HasKey(e => e.Username); // Set primary key (change to Id or Email if different)
                 entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Id)
@@ -44,7 +43,7 @@ namespace WebWomen.Data
 
                 entity.Property(e => e.Id)
                       .HasColumnName("id")
-                      .UseIdentityByDefaultColumn(); // SERIAL maps to Identity by default in EF Core
+                      .UseIdentityByDefaultColumn();
 
 
                 entity.Property(e => e.Name).HasColumnName("name").IsRequired();
@@ -83,7 +82,7 @@ namespace WebWomen.Data
 
                     entity.Property(e => e.Id)
                           .HasColumnName("id")
-                          .UseIdentityByDefaultColumn(); // SERIAL maps to Identity by default in EF Core
+                          .UseIdentityByDefaultColumn();
                     entity.Property(e => e.Name).HasColumnName("name");
                     entity.Property(e => e.Email).HasColumnName("email");
                     entity.Property(e => e.ServiceName).HasColumnName("servicename");
