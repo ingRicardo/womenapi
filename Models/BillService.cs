@@ -38,5 +38,9 @@ namespace WebWomen.Models
         [MaxLength(50)]
         [Column("status")]
         public string? Status { get; set; }
+
+        [MaxLength(100)]
+        [Column("idempotency_key")]
+        public string? Idempotency_key { get; set; }
     }
 }
