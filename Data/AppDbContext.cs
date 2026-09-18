@@ -90,6 +90,7 @@ namespace WebWomen.Data
                     entity.Property(e => e.Cost).HasColumnName("cost");
                     entity.Property(e => e.DueDate).HasColumnName("duedate");
                     entity.Property(e => e.Type).HasColumnName("type");
+                    entity.Property(e => e.Idempotency_key).HasColumnName("idempotency_key");
 
                 });
         }
