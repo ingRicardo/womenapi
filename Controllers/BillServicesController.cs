@@ -99,6 +99,27 @@ namespace WebWomen.Controllers
         {
             return _context.BillServices.Any(e => e.Id == id);
         }
+
+        // GET: api/BillServices/search?name=John&email=john@example.com
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<BillService>>> SearchBillServices(
+            [FromQuery] string name,
+            [FromQuery] string email)
+        {
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email))
+            {
+                return BadRequest("Both 'name' and 'email' parameters are required.");
+            }
+
+            var results = await _context.BillServices
+                .Where(b => EF.Functions.ILike(b.Name, $"%{name}%") &&
+                            EF.Functions.ILike(b.Email!, $"%{email}%"))
+                .ToListAsync();
+
+            return Ok(results);
+        }
+
+
     }
 
 }
