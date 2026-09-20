@@ -44,5 +44,10 @@ namespace WebWomen.Models
         [Column("idempotency_key")]
         [JsonPropertyName("idempotencyKey")]
         public string? Idempotency_key { get; set; }
+
+        [MaxLength(100)]
+        [Column("frequency")]
+        public string? Frequency { get; set; }
+
     }
 }
