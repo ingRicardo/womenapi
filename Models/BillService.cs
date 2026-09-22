@@ -49,5 +49,7 @@ namespace WebWomen.Models
         [Column("frequency")]
         public string? Frequency { get; set; }
 
+        [Column("income", TypeName = "decimal(18,2)")]
+        public decimal? Income { get; set; }
     }
 }

@@ -91,6 +91,7 @@ namespace WebWomen.Data
                     entity.Property(e => e.Type).HasColumnName("type");
                     entity.Property(e => e.Idempotency_key).HasColumnName("idempotency_key");
                     entity.Property(e => e.Frequency).HasColumnName("frequency");
+                    entity.Property(e => e.Income).HasColumnName("income");
 
                 });
         }
