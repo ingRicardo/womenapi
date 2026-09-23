@@ -1,3 +1,4 @@
+using ChatApi.Services;
 using Microsoft.EntityFrameworkCore;
 using WebWomen.Data;
 
@@ -30,7 +31,8 @@ builder.Services.AddCors(options =>
 });
 
 
-
+// Register HttpClient and GeminiService
+builder.Services.AddHttpClient<GeminiService>();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
