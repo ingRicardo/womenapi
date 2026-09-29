@@ -30,6 +30,12 @@ namespace WebWomen.Controllers
             return Ok(Products);
         }
 
-
+        [HttpGet("name")]
+        public ActionResult <string> GetTutoJson()
+        {
+            string name = "Riky";
+        
+            return Ok(name);
+        }
     }
 }
