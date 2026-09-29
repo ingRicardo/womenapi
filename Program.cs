@@ -1,5 +1,6 @@
 using ChatApi.Services;
 using Microsoft.EntityFrameworkCore;
+using WebWomen.Controllers;
 using WebWomen.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,7 @@ builder.Services.AddCors(options =>
 
 });
 
+builder.Services.AddHttpClient<BasicTutorial>();
 
 // Register HttpClient and GeminiService
 builder.Services.AddHttpClient<GeminiService>();
@@ -58,12 +60,20 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Women API v1");
+    // Optional: Sets Swagger UI as the root landing page (womenapi.onrender.com)
+    c.RoutePrefix = "swagger";
+});
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI();
     app.UseHttpsRedirection();
 }
 
