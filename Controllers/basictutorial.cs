@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebWomen.Data;
+using WebWomen.Models;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace WebWomen.Controllers
 {
@@ -30,12 +32,36 @@ namespace WebWomen.Controllers
             return Ok(Products);
         }
 
-        [HttpGet("name")]
-        public ActionResult <string> GetTutoJson()
+        [HttpGet("keywords")]
+        public ActionResult<List<CSharpKeywordModel<string>>> GetTutoJson()
         {
-            string name = "Riky";
-        
-            return Ok(name);
+            List<string> valuetype = [
+                "bool", "byte", "char", "decimal",
+                "double", "enum", "float", "int", "long", "sbyte", "short", "struct", "uint", "ulong", "ushort"
+            ];
+
+            List<string> reference_type = [
+                "public", "private", "internal", "protected", "abstrac", "const",
+                "event", "extern", "new", "override", "partial", "readonly", "sealed", "static", "unsafe", "virtual", "volatile"
+            ];
+
+            List<string> statementKeywords = [
+                "if", "else", "switch", "do", "for", "foreach", "in", "while", "break", "continue", "goto", "return", "throw", "try", "catch", "finally", "checked", "unchecked"
+            ];
+            List<string> contextualKeywords = [
+                "add", "alias", "ascending", "async", "await", "by", "descending", "dynamic", "equals", "from", "get", "global", "group", "into", "join", "let", "nameof", "on", "orderby", "partial", "remove", "select", "set", "value", "var", "when", "where", "yield"
+            ];
+
+
+            List<CSharpKeywordModel<string>> keywordCategories = [
+                new CSharpKeywordModel<string>("Value Type Keywords", valuetype),
+                new CSharpKeywordModel<string>("Reference Type Keywords", reference_type),
+                new CSharpKeywordModel<string>("Statement Keywords", statementKeywords),
+                new CSharpKeywordModel<string>("Contextual Keywords", contextualKeywords),
+
+            ];
+
+            return Ok(keywordCategories);
         }
     }
 }
