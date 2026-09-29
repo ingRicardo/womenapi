@@ -1,5 +1,6 @@
 using ChatApi.Services;
 using Microsoft.EntityFrameworkCore;
+using WebWomen.Controllers;
 using WebWomen.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,7 @@ builder.Services.AddCors(options =>
 
 });
 
+builder.Services.AddHttpClient<BasicTutorial>();
 
 // Register HttpClient and GeminiService
 builder.Services.AddHttpClient<GeminiService>();
