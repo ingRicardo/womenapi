@@ -2,7 +2,7 @@
 using WebWomen.Data;
 using WebWomen.Models;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
-
+using WebWomen.Services;
 namespace WebWomen.Controllers
 {
     [ApiController]
@@ -63,5 +63,22 @@ namespace WebWomen.Controllers
 
             return Ok(keywordCategories);
         }
+
+        [HttpGet("variables")]
+        public ActionResult<List<int>> getVariables()
+        {
+            nmberstuto numb = new nmberstuto();
+            numb.numbers1();
+            return Ok(numb.numbers1());
+        }
+
+        [HttpGet("datatypes")]
+        public ActionResult<List<Object>> getDataTypes()
+        {
+            DataTypesTuto dataTypes = new DataTypesTuto();
+            return Ok(dataTypes.getDataTypes());
+        }
+
+
     }
 }
