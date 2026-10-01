@@ -79,6 +79,13 @@ namespace WebWomen.Controllers
             return Ok(dataTypes.getDataTypes());
         }
 
+        [HttpGet("typecasting")]
+        public ActionResult<List<Object>> getTypeCasting()
+        {
+            TypeCasting casting = new TypeCasting();
 
+
+            return Ok(casting.getcasting());
+        }
     }
 }
