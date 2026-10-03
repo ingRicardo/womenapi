@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebWomen.Data;
 using WebWomen.Models;
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using WebWomen.Services;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
+using static WebWomen.Services.ReturnDelegateDemo;
 namespace WebWomen.Controllers
 {
     [ApiController]
@@ -86,6 +87,21 @@ namespace WebWomen.Controllers
 
 
             return Ok(casting.getcasting());
+        }
+
+        [HttpGet("delegates")]
+        public ActionResult<Dictionary<string, int>> getDelegates()
+        {
+            Dictionary<string, int > delres = new Dictionary<string, int>();
+
+            Operation op = Add;
+
+            delres.Add("Addition", op(5, 3));
+            op = Multiply;
+            delres.Add("Multiplication", op(5, 3));
+
+
+            return Ok(delres);
         }
     }
 }
