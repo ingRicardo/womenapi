@@ -20,6 +20,24 @@
                 x++;
             }
 
+            // // for loop begins when x=1 and runs till x <= 4
+            for ( x = 1; x <= 4; x++)
+                entryloopvals.Add("for loop RikyMac");
+
+
+            // Exit Controlled Loops
+
+            x = 21;
+
+            do
+            {
+                // The line will be printed even if the condition is false
+                entryloopvals.Add("do-while RikyMac");
+                x++;
+            }
+            while (x < 20);
+
+
             return entryloopvals;
         }
 
