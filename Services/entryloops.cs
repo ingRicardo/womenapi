@@ -38,6 +38,24 @@
             while (x < 20);
 
 
+            //  Nested Loops
+
+            // loop within loop printing 
+            for (int i = 2; i < 3; i++)
+                for (int j = 1; j < i; j++)
+                    entryloopvals.Add("nested loop RikyMac");
+
+            // Continue Statement 
+
+            //  printed only 1 times
+            for (int i = 1; i < 3; i++)
+            {
+                if (i == 2)
+                    continue;
+
+                entryloopvals.Add("continue statement RikyMac");
+            }
+
             return entryloopvals;
         }
 
