@@ -56,6 +56,41 @@
                 entryloopvals.Add("continue statement RikyMac");
             }
 
+
+            //foreach Loop
+            string[] names = { "Alfred", "RikyMac", "Annie" };
+
+            foreach (string name in names)
+            {
+                entryloopvals.Add("foreach Name: " + name);
+            }
+
+
+            //Off-by-One Errors
+            for (int i = 0; i <= 5; i++)
+            {
+                entryloopvals.Add("Off-by-One Error: " + i);
+             }
+
+
+
+            for (int i = 0; i < 5; i++)
+            {
+                if (i == 2)
+                {
+                    // Modifies the loop variable
+                    // and skips the next iteration
+                    i++;
+                }
+
+                entryloopvals.Add("modifies var " + i);
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                // Empty body - no operations
+            }
+
             return entryloopvals;
         }
 
