@@ -103,5 +103,13 @@ namespace WebWomen.Controllers
 
             return Ok(delres);
         }
+
+        [HttpGet("entryloop")]
+        public ActionResult<List<Object>> GetWhileLoop()
+        {
+            Entryloops entryloops = new Entryloops();
+
+            return Ok(entryloops.EntryLoops());
+        }
     }
 }
