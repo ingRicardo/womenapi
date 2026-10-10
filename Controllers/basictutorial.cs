@@ -128,6 +128,23 @@ namespace WebWomen.Controllers
 
             list.Add("Square of 5 is: " + result);
 
+
+
+            int value = 10;
+
+            // Call method with value parameter
+           list.Add(MethodsTuto.Display(value)) ;
+
+            // Call method with reference parameter
+            list.Add(MethodsTuto.Update(ref value)) ;
+
+            int outputValue;
+
+            // Call method with output parameter
+            MethodsTuto.GetValues(out outputValue);
+            list.Add("Output value is: " + outputValue);
+
+
             return Ok(list);
         }
 
