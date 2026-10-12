@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using WebWomen.Data;
 using WebWomen.Models;
 using WebWomen.Services;
@@ -111,5 +112,55 @@ namespace WebWomen.Controllers
 
             return Ok(entryloops.EntryLoops());
         }
+
+        [HttpGet("methodstutorial")]
+        public ActionResult <List<Object>> GetMethodsTutorial()
+        {
+            MethodsTuto methodsTuto = new MethodsTuto();
+
+            List<Object> list = new List<Object>();
+
+            // Create an instance of Geeks Call the instance method directly
+            list.Add(methodsTuto.DisplayMessage());
+
+            // Call static method using class name
+            int result = MethodsTuto.Square(5);
+
+            list.Add("Square of 5 is: " + result);
+
+
+
+            int value = 10;
+
+            // Call method with value parameter
+           list.Add(MethodsTuto.Display(value)) ;
+
+            // Call method with reference parameter
+            list.Add(MethodsTuto.Update(ref value)) ;
+
+            int outputValue;
+
+            // Call method with output parameter
+            MethodsTuto.GetValues(out outputValue);
+            list.Add("Output value is: " + outputValue);
+
+
+
+            result = MethodsTuto.Sum(10, 20, 30, 40);
+            list.Add(result);
+
+
+            // Uses the default value of age
+            list.Add( MethodsTuto.Scholar("Ankita"));
+            // Provides a value for age
+            list.Add (MethodsTuto.Scholar("Siya", 25));
+
+
+
+            return Ok(list);
+        }
+
+
+
     }
 }
