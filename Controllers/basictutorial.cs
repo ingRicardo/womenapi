@@ -145,6 +145,18 @@ namespace WebWomen.Controllers
             list.Add("Output value is: " + outputValue);
 
 
+
+            result = MethodsTuto.Sum(10, 20, 30, 40);
+            list.Add(result);
+
+
+            // Uses the default value of age
+            list.Add( MethodsTuto.Scholar("Ankita"));
+            // Provides a value for age
+            list.Add (MethodsTuto.Scholar("Siya", 25));
+
+
+
             return Ok(list);
         }
 

@@ -42,6 +42,25 @@
             //Console.WriteLine("Output Parameter: " + z);
         }
 
+        public static int Sum(params int[] numbers)
+        {
+            int total = 0;
+
+            foreach (int number in numbers)
+            {
+                total += number;
+            }
+
+            return total;
+        }
+
+        public static string Scholar(string name, int age = 20)
+        {
+           // Console.WriteLine("Name: " + name);
+           // Console.WriteLine("Age: " + age);
+
+            return "Name: " + name + " Age: " + age;
+        }
 
     }
 }
