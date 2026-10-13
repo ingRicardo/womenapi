@@ -93,7 +93,7 @@ namespace WebWomen.Controllers
         [HttpGet("delegates")]
         public ActionResult<Dictionary<string, int>> getDelegates()
         {
-            Dictionary<string, int > delres = new Dictionary<string, int>();
+            Dictionary<string, int> delres = new Dictionary<string, int>();
 
             Operation op = Add;
 
@@ -114,7 +114,7 @@ namespace WebWomen.Controllers
         }
 
         [HttpGet("methodstutorial")]
-        public ActionResult <List<Object>> GetMethodsTutorial()
+        public ActionResult<List<Object>> GetMethodsTutorial()
         {
             MethodsTuto methodsTuto = new MethodsTuto();
 
@@ -133,10 +133,10 @@ namespace WebWomen.Controllers
             int value = 10;
 
             // Call method with value parameter
-           list.Add(MethodsTuto.Display(value)) ;
+            list.Add(MethodsTuto.Display(value));
 
             // Call method with reference parameter
-            list.Add(MethodsTuto.Update(ref value)) ;
+            list.Add(MethodsTuto.Update(ref value));
 
             int outputValue;
 
@@ -151,16 +151,34 @@ namespace WebWomen.Controllers
 
 
             // Uses the default value of age
-            list.Add( MethodsTuto.Scholar("Ankita"));
+            list.Add(MethodsTuto.Scholar("Ankita"));
             // Provides a value for age
-            list.Add (MethodsTuto.Scholar("Siya", 25));
+            list.Add(MethodsTuto.Scholar("Siya", 25));
 
 
 
             return Ok(list);
         }
 
+        [HttpGet("methodoverload")]
+        public ActionResult<List<Object>> GetOverload()
+        {
+            MethodOverloading methodOverloading = new MethodOverloading();
+            List<Object> list = new List<Object>();
+            list.Add("Add(int, int): " + methodOverloading.Add(5, 10));
+            list.Add("Add(int, int, int): " + methodOverloading.Add(5, 10, 15));
+            list.Add("Add(double, double): " + methodOverloading.Add(5.5, 10.5));
 
 
+            list.Add("StudentId(string, int): " + methodOverloading.StudentId("Sweta", 101));
+            list.Add("StudentId(int, string): " + methodOverloading.StudentId(102, "riky"));
+
+            list.Add("Show(int): " + methodOverloading.Show(250));
+            list.Add("Show(string): " + methodOverloading.Show("Hello, World!"));
+            list.Add("Show(byte): " + methodOverloading.Show((byte)25));
+            list.Add("Show(char): " + methodOverloading.Show('A'));
+
+            return Ok(list);
+        }
     }
 }
