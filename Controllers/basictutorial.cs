@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using WebWomen.Data;
 using WebWomen.Models;
 using WebWomen.Services;
@@ -180,5 +182,36 @@ namespace WebWomen.Controllers
 
             return Ok(list);
         }
+
+        [HttpGet("recursiontuto")]
+        public ActionResult<List<Object>> GetRecursion()
+        {
+           
+            List<Object> list = new List<Object>();
+            StringBuilder sb = new StringBuilder();
+
+            Recursion.PrintHello(5, sb);
+            string input = sb.ToString();
+            string[] resultClean = input.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string item in resultClean)
+            {
+                list.Add(item);
+            }
+            sb = new StringBuilder();
+
+
+            Recursion.F(3,sb);
+            input = sb.ToString();
+            resultClean = input.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string item in resultClean)
+            {
+                list.Add(item);
+            }
+
+            return Ok(list);
+        }
+
+
     }
 }
