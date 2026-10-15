@@ -212,6 +212,112 @@ namespace WebWomen.Controllers
             return Ok(list);
         }
 
+        [HttpGet("arrays")]
+        public ActionResult<List<object>> GetArr()
+        {
+            List<object> list = new List<object>();
+
+            int[] arr = ArrayTuto.firstarray();
+            int n = arr.Length;
+
+            list.Add("Value Type Array -> ");
+            for (int i = 0; i < n; i++)
+                list.Add(arr[i]);
+
+            list.Add(arr);
+
+            list.Add("Reference Type Array -> ");
+
+            string[] names = ArrayTuto.refarray();
+            for (int i = 0; i < names.Length; i++)
+                list.Add(names[i]);
+            list.Add(names);
+
+            int[,] multiarr = ArrayTuto.multiarray();
+
+            list.Add("multidimensionalArray ->");
+
+            list.Add(multiarr[0, 1]);
+            list.Add(multiarr[1, 0]);
+
+
+            list.Add("Jagged Array ->");
+
+            int[][] jagarr = ArrayTuto.jaggedArray();
+
+            List<int> li = new List<int>();
+            for (int i = 0; i < jagarr.Length; i++)
+            {
+                foreach (int value in jagarr[i])
+                {
+                    li.Add(value);
+                }
+                list.Add(li);
+                li = new List<int>();
+            }
+
+            list.Add("Accessing Value from Array ->");
+            
+            int [] accessarray = ArrayTuto.accessvalue();
+
+            list.Add(accessarray);
+            // Accessing the fourth element
+            list.Add("Accessing the fourth element ->");
+            list.Add(accessarray[3]);
+            // Accessing the first element
+            list.Add("Accessing the first element ->");
+            list.Add(accessarray[0]);
+
+
+            // Updating the first element
+            
+            list.Add("new array to update ->");
+            int[] originalarr = ArrayTuto.modifyvalue();
+            list.Add(originalarr);
+            list.Add($"Updating the first element -> {originalarr[0]} -> 90");
+            int[] updatearray = ArrayTuto.modifyvalue();
+            updatearray[0] = 90;
+            list.Add(updatearray);
+            list.Add("traverse an array ->");
+
+            // Traversing and printing the array
+            for (int i = 0; i < updatearray.Length; i++)
+            {
+                list.Add(updatearray[i]);
+            }
+
+            list.Add("Size of array: ");
+            list.Add(updatearray.Length);
+
+
+            list.Add("Array of Objects ->");
+
+            Student[] studentarr = ArrayTuto.studentarray();
+            list.Add(studentarr);
+            // Accessing the array elements
+            for (int i = 0; i < studentarr.Length; i++)
+            {
+               list.Add(
+                    "Element at " + i + " : { " +
+                    studentarr[i].roll_no + " " +
+                    studentarr[i].name + " }");
+            }
+
+            // Sum of array elements
+            list.Add("New array Sum of array elements ->");
+            int[] sumarr = { 3, 1, 2, 5, 4 };
+            list.Add(sumarr);
+            // Passing the array to the Sum method
+            list.Add("Sum of array elements: ");
+            list.Add(ArrayTuto.Sum(sumarr));
+
+            list.Add("Returning a new array ->");
+            int [] retrunarr = ArrayTuto.ReturnArray();
+            for (int i = 0; i < retrunarr.Length; i++)
+                list.Add(retrunarr[i]);
+
+            return Ok(list);
+        }
 
     }
 }
