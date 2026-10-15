@@ -212,6 +212,53 @@ namespace WebWomen.Controllers
             return Ok(list);
         }
 
+        [HttpGet("arrays")]
+        public ActionResult<List<object>> GetArr()
+        {
+            List<object> list = new List<object>();
+
+            int[] arr = ArrayTuto.firstarray();
+            int n = arr.Length;
+
+            list.Add("Value Type Array -> ");
+            for (int i = 0; i < n; i++)
+                list.Add(arr[i]);
+
+            list.Add(arr);
+
+            list.Add("Reference Type Array -> ");
+
+            string[] names = ArrayTuto.refarray();
+            for (int i = 0; i < names.Length; i++)
+                list.Add(names[i]);
+            list.Add(names);
+
+            int[,] multiarr = ArrayTuto.multiarray();
+
+            list.Add("multidimensionalArray ->");
+
+            list.Add(multiarr[0, 1]);
+            list.Add(multiarr[1, 0]);
+
+
+            list.Add("Jagged Array ->");
+
+            int[][] jagarr = ArrayTuto.jaggedArray();
+
+            List<int> li = new List<int>();
+            for (int i = 0; i < jagarr.Length; i++)
+            {
+                foreach (int value in jagarr[i])
+                {
+                    li.Add(value);
+                }
+                list.Add(li);
+                li = new List<int>();
+            }
+
+
+            return Ok(list);
+        }
 
     }
 }
