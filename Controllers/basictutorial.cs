@@ -256,6 +256,65 @@ namespace WebWomen.Controllers
                 li = new List<int>();
             }
 
+            list.Add("Accessing Value from Array ->");
+            
+            int [] accessarray = ArrayTuto.accessvalue();
+
+            list.Add(accessarray);
+            // Accessing the fourth element
+            list.Add("Accessing the fourth element ->");
+            list.Add(accessarray[3]);
+            // Accessing the first element
+            list.Add("Accessing the first element ->");
+            list.Add(accessarray[0]);
+
+
+            // Updating the first element
+            
+            list.Add("new array to update ->");
+            int[] originalarr = ArrayTuto.modifyvalue();
+            list.Add(originalarr);
+            list.Add($"Updating the first element -> {originalarr[0]} -> 90");
+            int[] updatearray = ArrayTuto.modifyvalue();
+            updatearray[0] = 90;
+            list.Add(updatearray);
+            list.Add("traverse an array ->");
+
+            // Traversing and printing the array
+            for (int i = 0; i < updatearray.Length; i++)
+            {
+                list.Add(updatearray[i]);
+            }
+
+            list.Add("Size of array: ");
+            list.Add(updatearray.Length);
+
+
+            list.Add("Array of Objects ->");
+
+            Student[] studentarr = ArrayTuto.studentarray();
+            list.Add(studentarr);
+            // Accessing the array elements
+            for (int i = 0; i < studentarr.Length; i++)
+            {
+               list.Add(
+                    "Element at " + i + " : { " +
+                    studentarr[i].roll_no + " " +
+                    studentarr[i].name + " }");
+            }
+
+            // Sum of array elements
+            list.Add("New array Sum of array elements ->");
+            int[] sumarr = { 3, 1, 2, 5, 4 };
+            list.Add(sumarr);
+            // Passing the array to the Sum method
+            list.Add("Sum of array elements: ");
+            list.Add(ArrayTuto.Sum(sumarr));
+
+            list.Add("Returning a new array ->");
+            int [] retrunarr = ArrayTuto.ReturnArray();
+            for (int i = 0; i < retrunarr.Length; i++)
+                list.Add(retrunarr[i]);
 
             return Ok(list);
         }
