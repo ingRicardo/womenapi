@@ -186,7 +186,7 @@ namespace WebWomen.Controllers
         [HttpGet("recursiontuto")]
         public ActionResult<List<Object>> GetRecursion()
         {
-           
+
             List<Object> list = new List<Object>();
             StringBuilder sb = new StringBuilder();
 
@@ -201,7 +201,7 @@ namespace WebWomen.Controllers
             sb = new StringBuilder();
 
 
-            Recursion.F(3,sb);
+            Recursion.F(3, sb);
             input = sb.ToString();
             resultClean = input.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string item in resultClean)
@@ -257,8 +257,8 @@ namespace WebWomen.Controllers
             }
 
             list.Add("Accessing Value from Array ->");
-            
-            int [] accessarray = ArrayTuto.accessvalue();
+
+            int[] accessarray = ArrayTuto.accessvalue();
 
             list.Add(accessarray);
             // Accessing the fourth element
@@ -270,7 +270,7 @@ namespace WebWomen.Controllers
 
 
             // Updating the first element
-            
+
             list.Add("new array to update ->");
             int[] originalarr = ArrayTuto.modifyvalue();
             list.Add(originalarr);
@@ -297,10 +297,10 @@ namespace WebWomen.Controllers
             // Accessing the array elements
             for (int i = 0; i < studentarr.Length; i++)
             {
-               list.Add(
-                    "Element at " + i + " : { " +
-                    studentarr[i].roll_no + " " +
-                    studentarr[i].name + " }");
+                list.Add(
+                     "Element at " + i + " : { " +
+                     studentarr[i].roll_no + " " +
+                     studentarr[i].name + " }");
             }
 
             // Sum of array elements
@@ -312,12 +312,151 @@ namespace WebWomen.Controllers
             list.Add(ArrayTuto.Sum(sumarr));
 
             list.Add("Returning a new array ->");
-            int [] retrunarr = ArrayTuto.ReturnArray();
+            int[] retrunarr = ArrayTuto.ReturnArray();
             for (int i = 0; i < retrunarr.Length; i++)
                 list.Add(retrunarr[i]);
+
+            //multiarrays
+            list.Add("Multidimensional Array ->");
+            int[,] multiarray1 = MultiArrays.declareMultiarray();
+            // int[,] arr = { { 1, 2 }, { 3, 4 } };
+
+            List<int> row = new List<int>();
+            // Iterating the Elements of Array
+            for (int i = 0; i < multiarray1.GetLength(0); i++)
+            {
+                for (int j = 0; j < multiarray1.GetLength(1); j++)
+                {
+                    //Console.Write(multiarray1[i, j] + " ");
+                    row.Add(multiarray1[i, j]);
+                }
+                list.Add(row);
+                row = new List<int>();
+            }
+
+
 
             return Ok(list);
         }
 
+
+
+
+        //Two-Dimensional Array with User input
+        [HttpPost("process-array-user-input")]
+        public ActionResult<List<object>> ProcessArray([FromBody] int[][] inputMatrix)
+        {
+            List<object> list = new List<object>();
+
+            // 1. Validate that the input matches the expected 2x3 dimensions
+            if (inputMatrix == null || inputMatrix.Length != 2 ||
+                inputMatrix.Any(row => row == null || row.Length != 3))
+            {
+                return BadRequest("Invalid input. Please provide a 2x3 matrix.");
+            }
+
+            // 2. Map the jagged array into a multi-dimensional 2D array
+            int[,] arr = new int[2, 3];
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    arr[i, j] = inputMatrix[i][j];
+                }
+            }
+
+            // 3. Generate the formatted output string representation
+            var formattedRows = new List<string>();
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                var rowValues = new List<string>();
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    rowValues.Add(arr[i, j].ToString());
+                }
+                formattedRows.Add(string.Join(" ", rowValues));
+            }
+
+            // FIX: Convert the 2D array (int[,]) into a jagged array (int[][]) for JSON serialization
+            int[][] jaggedMatrix = new int[2][]; // or int[2][]
+            int[][] serializableMatrix = new int[arr.GetLength(0)][];
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                serializableMatrix[i] = new int[arr.GetLength(1)];
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    serializableMatrix[i][j] = arr[i, j];
+                }
+            }
+
+            // 4. Return the result as a JSON response
+            list.Add(new
+            {
+                Message = "Elements of Array processed successfully:",
+                Matrix = serializableMatrix, // Use the jagged array here instead of 'arr'
+                FormattedOutput = formattedRows
+            });
+
+            return Ok(list);
+        }
+
+
+        // Three-Dimensional Array with User input (e.g., 2x3x4 dimensions)
+       // using an example dimension of 2x3x4: 2 slices, 3 rows per slice, and 4 columns per row).
+        //This version maintains the jagged array structure(int[][][]) to ensure full compatibility with System.Text.Json
+
+        [HttpPost("process-3d-array-user-input")]
+        public ActionResult<List<object>> Process3DArray([FromBody] int[][][] inputMatrix)
+        {
+            List<object> list = new List<object>();
+
+            // 1. Validate that the input matches the expected 2x3x4 dimensions
+            if (inputMatrix == null || inputMatrix.Length != 2 ||
+                inputMatrix.Any(slice => slice == null || slice.Length != 3 ||
+                slice.Any(row => row == null || row.Length != 4)))
+            {
+                return BadRequest("Invalid input. Please provide a 2x3x4 three-dimensional array.");
+            }
+
+            // 2. Map and build a serializable 3D jagged array (int[][][])
+            // System.Text.Json does not support true multi-dimensional arrays like int[,,]
+            int[][][] serializableMatrix = new int[2][][];
+            for (int i = 0; i < 2; i++)
+            {
+                serializableMatrix[i] = new int[3][];
+                for (int j = 0; j < 3; j++)
+                {
+                    serializableMatrix[i][j] = new int[4];
+                    for (int k = 0; k < 4; k++)
+                    {
+                        serializableMatrix[i][j][k] = inputMatrix[i][j][k];
+                    }
+                }
+            }
+
+            // 3. Return the result as a JSON response
+            list.Add(new
+            {
+                Message = "3D Array processed successfully:",
+                Matrix = serializableMatrix,
+
+            });
+
+            return Ok(list);
+        }
+/*
+        [
+  [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12]
+  ],
+  [
+    [13, 14, 15, 16],
+    [17, 18, 19, 20],
+    [21, 22, 23, 24]
+  ]
+]
+*/
     }
 }
