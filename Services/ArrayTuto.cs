@@ -106,5 +106,100 @@
             // Returning an array
             return new int[] { 1, 2, 3 };
         }
+
+
+        // Declaration and Initialization
+        public static List<object> jaggedAarrDecla()
+        {
+            List<object> list = new List<object>();
+
+            // Create a jagged array with 4 rows
+            int[][] jagged_arr = new int[4][];
+
+            // Initialize rows with different lengths
+            jagged_arr[0] = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+            jagged_arr[1] = new int[] { 8, 9, 10, 11, 12, 13 };
+            jagged_arr[2] = new int[] { 14, 15, 16 };
+            jagged_arr[3] = new int[] { 19, 20, 21, 22, 23 };
+
+            list.Add("Jagged array created with 4 rows and different lengths");
+            list.Add(jagged_arr);
+            // Display the elements
+            for (int i = 0; i < jagged_arr.Length; i++)
+            {
+                list.Add("Row " + i + ": ");
+
+                foreach (int num in jagged_arr[i])
+                {
+                    list.Add(num);
+                }
+
+            }
+
+            return list;
+        }
+
+        // Accessing and Modifying Elements
+        public static List<object> modifyarray()
+        {
+
+            List<object> list = new List<object>();
+            list.Add("Declaration of a jagged array with 3 rows");
+
+            int[][] arr = new int[3][];
+
+            // Initializing each row of the jagged array First row
+            arr[0] = new int[] { 1, 2, 3, 4 };
+            list.Add("Initialized first row with 4 elements: " + string.Join(", ", arr[0]));
+            // Second row
+            arr[1] = new int[] { 4, 5, 6 };
+            list.Add("Initialized second row with 3 elements: " + string.Join(", ", arr[1]));
+            // Third row (only two elements)
+            arr[2] = new int[] { 7, 8 };
+            list.Add("Initialized third row with 2 elements: " + string.Join(", ", arr[2]));
+
+
+          //  list.Add(arr);
+
+            list.Add("Accessing the third element in second row");
+            int value = arr[1][2];
+            list.Add(value);
+
+            list.Add("Modifying the second element in the first row (from 2 to 10)");
+            arr[0][1] = 10;
+            list.Add(arr[0][1]);
+
+            list.Add("Finding the Length of a Jagged Array");
+
+            int[][] arr2 =
+            {
+            new int[] { 1, 2, 3 },
+            new int[] { 4, 5 },
+            new int[] { 6, 7, 8, 9 }
+            };
+            list.Add(arr2);
+
+            list.Add("Number of rows: " + arr2.Length);
+            list.Add("Elements in first row: " + arr2[0].Length);
+            list.Add("Elements in second row: " + arr2[1].Length);
+
+            list.Add("Iterating Through a Jagged Array");
+
+            int[][] arr3 = { new int[] { 1, 2 },
+                             new int[] { 3, 4, 5 },
+                             new int[] { 6, 7, 8, 9 } };
+
+            list.Add(arr3);
+            for (int i = 0; i < arr3.Length; i++)
+            {
+                list.Add("Row " + i + ": ");
+                for (int j = 0; j < arr3[i].Length; j++)
+                {
+                    list.Add(arr3[i][j]);
+                }
+            }
+
+            return list;
+        }
     }
 }
