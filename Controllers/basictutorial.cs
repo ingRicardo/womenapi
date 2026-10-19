@@ -471,5 +471,14 @@ namespace WebWomen.Controllers
 
         }
 
+
+        [HttpGet("arrayclass")]
+        public ActionResult<List<object>> ArrayClass()
+        {
+            List<object> list = new List<object>();
+            list.Add(ArrayTuto.classArray());
+            return Ok(list);
+        }
+
     }
 }
