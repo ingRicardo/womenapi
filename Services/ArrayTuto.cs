@@ -201,5 +201,65 @@
 
             return list;
         }
+        //It supports common operations such as sorting, searching, copying, reversing, and retrieving information about array elements
+
+        public static List<object> classArray()
+        {
+            List<object> lt = new List<object>();
+
+            Array numbers = new int[] { 10, 20, 30, 40, 50 };
+            lt.Add("Array elements:");
+            lt.Add(numbers);
+            lt.Add("Length of the array: " + numbers.Length);
+
+            int[] numbers2 = { 10, 20, 30, 40, 50, 60 };
+            lt.Add("Array elements:");
+            lt.Add(numbers2);
+            lt.Add("Length of the array: " +numbers2.Length);
+
+            //Rank Property
+            // The Rank property returns the number of dimensions of an array.
+
+            lt.Add("Rank of the array: " + numbers2.Rank);
+
+            // Examples of Array Class Methods
+            //Array.Reverse()
+            int[] numbers3 = { 10, 20, 30, 40, 50, 60 };
+            int[] numbersOriginal = (int[])numbers3.Clone(); // Create a copy of the original array
+            lt.Add("Array before reversing:");
+           // lt.Add(numbersOriginal);
+            foreach (int number in numbersOriginal)
+            {
+                lt.Add(number);
+            }
+
+           Array.Reverse(numbers3);
+            lt.Add("Array after reversing:");
+            //lt.Add(numbers3);
+            foreach (int number in numbers3)
+            {
+                lt.Add(number);
+            }
+            //Array.Sort()
+
+            int[] numbers4 = { 50, 20, 40, 10, 60, 30 };
+
+            lt.Add("Array before sorting:");
+            foreach (int number in numbers4)
+            {
+                lt.Add(number);
+            }
+
+            Array.Sort(numbers4);
+
+            lt.Add("Array after sorting:");
+            foreach (int number in numbers4)
+            {
+                lt.Add(number);
+            }
+
+            return lt;
+        }
+
     }
 }
