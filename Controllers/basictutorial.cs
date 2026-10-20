@@ -480,5 +480,13 @@ namespace WebWomen.Controllers
             return Ok(list);
         }
 
+        [HttpGet("sortarray")]
+        public ActionResult<List<object>> SortArray()
+        {
+            List<object> list = new List<object>();
+            list.Add(ArrayTuto.sortArray());
+            return Ok(list);
+        }
+
     }
 }
