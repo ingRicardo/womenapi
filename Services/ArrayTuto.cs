@@ -1,4 +1,6 @@
-﻿namespace WebWomen.Services
+﻿using WebWomen.Models;
+
+namespace WebWomen.Services
 {
     public class Student
     {
@@ -261,5 +263,74 @@
             return lt;
         }
 
-    }
+
+         //Sorting an Array
+        public static List<object> sortArray()
+        {
+            List<object> lt = new List<object>();
+
+            //Sort Integer and Character Arrays in Ascending Order
+
+            // Array of integer type
+            int[] arr1 = { 2, -1, 3, 4 };
+
+            // Character array
+            char[] arr2 = { 'b', 'a', 'c', 'b' };
+
+            // Sorting arrays in ascending order
+            Array.Sort(arr1);
+            Array.Sort(arr2);
+
+            // Print sorted arrays
+            lt.Add(string.Join(", ", arr1));
+            lt.Add(string.Join(", ", arr2));
+
+
+            // To Sort a Subarray
+            int[] arr = { 2, -1, 4, 3 };
+
+            // Sort elements from index 1, for 3 elements
+            Array.Sort(arr, 1, 3);
+
+            // Print array after sorting
+            lt.Add(string.Join(", ", arr));
+
+            // Descending Order Sorting
+
+            // Integer array
+            int[] arrD = { 2, -1, 3, 4 };
+
+            Array.Sort(arrD);
+            Array.Reverse(arrD);
+
+            lt.Add(string.Join(", ", arrD));
+
+            // String array
+            string[] str = { "SorIa", "Zoyla", "Mario" };
+
+            Array.Sort(str, StringComparer.Ordinal);
+            Array.Reverse(str);
+
+            lt.Add(string.Join(", ", str));
+
+            //Custom Sorting with Comparer
+
+            StudentI[] students =
+            {
+                new(1, "Ram", "UP"),
+                new(2, "Shyam", "MP"),
+                new(3, "Hari", "Bihar")
+            };
+
+            // Sort students by name
+            Array.Sort(students);
+
+            // Print sorted students
+            foreach (StudentI student in students)
+                lt.Add(student.ToString());
+
+            return lt;
+        }
+
+     }
 }
