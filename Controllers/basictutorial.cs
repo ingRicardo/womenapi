@@ -488,5 +488,15 @@ namespace WebWomen.Controllers
             return Ok(list);
         }
 
+
+        [HttpGet("stringtuto")]
+        public ActionResult<List<object>> StringTuto()
+        {
+            List<object> list = new List<object>();
+            list.Add( StringTutorial.stringbasictuto());
+            return Ok(list);
+        }
+
+
     }
 }
