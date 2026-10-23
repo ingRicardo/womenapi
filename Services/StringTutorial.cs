@@ -142,7 +142,56 @@ namespace WebWomen.Services
 
             return lt;
         }
+        public static List<object> stringclasstuto()
+        {
+            List<object> lt = new List<object>();
 
+            string text = "hello";
+
+            // Creates a new string
+            text = text.ToUpper();
+            lt.Add(text);
+
+            //Thread-Safe
+            string str1 = "Hello";
+            string str2 = str1;
+
+            str2 = str2 + " C#";
+
+            lt.Add("str1: " + str1);
+            lt.Add("str2: " + str2);
+
+
+            //Supports Various Utility Methods
+            string str3 = "hello Rik";
+
+            lt.Add("Length of String -> " + str3.Length);
+            lt.Add("Changed String -> " + str3.ToUpper());
+
+
+            //String Constructors
+
+            // Constructor 1: Creating a string using new
+            string str11 = new string("Hello C#".ToCharArray());
+            lt.Add("String using constructor: " + str11);
+
+            // Constructor 2: Creating a string from a character array
+            char[] charArray = { 'C', '#', ' ', 'C', 'o', 'd', 'e' };
+            string str22 = new string(charArray);
+            lt.Add("String from char array: " + str22);
+
+            // Constructor 3: Creating a string using a repeated character 
+            string str33 = new string('*', 5);
+            lt.Add("Repeated characters: " + str33);
+
+
+            char[] charsc = { 'R', 'i', 'c', 'k', 'y' };
+            string strc = new string(charsc, 1, 3);
+
+            lt.Add("Substring from char array: " + strc);
+
+            return lt;
+        }
 
     }
 }
