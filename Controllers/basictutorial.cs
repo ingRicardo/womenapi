@@ -497,6 +497,14 @@ namespace WebWomen.Controllers
             return Ok(list);
         }
 
+        [HttpGet("stringclasstuto")]
+        public ActionResult<List<object>> StringClassTuto()
+        {
+            List<object> list = new List<object>();
+            list.Add(StringTutorial.stringclasstuto());
+            return Ok(list);
+        }
+
 
     }
 }
