@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using WebWomen.Models;
 
 namespace WebWomen.Services
 {
@@ -102,7 +103,7 @@ namespace WebWomen.Services
             lt.Add("Updated Length: " + sbNew.Length);
 
             //Commonly Used Methods in StringBuilder
-            StringBuilder sbC= new StringBuilder("GeeksForGeeks");
+            StringBuilder sbC = new StringBuilder("GeeksForGeeks");
 
             lt.Add("Initial: " + sbC);
 
@@ -136,7 +137,7 @@ namespace WebWomen.Services
 
             string resultC = sbC.ToString();
             lt.Add("Final String: " + resultC);
-       
+
 
 
 
@@ -191,6 +192,19 @@ namespace WebWomen.Services
             lt.Add("Substring from char array: " + strc);
 
             return lt;
+        }
+
+        public static List<object> classobjecttuto()
+        {
+            List<object> lt = new List<object>();
+
+            // Creating object
+            Dog tuffy = new Dog("tuffy", "papillon", 5, "white");
+            lt.Add(tuffy.ToString());
+
+
+            return lt;
+
         }
 
     }
