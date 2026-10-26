@@ -506,5 +506,14 @@ namespace WebWomen.Controllers
         }
 
 
+        [HttpGet("classobjecttuto")]
+        public ActionResult<List<object>> ClassObjectTuto()
+        {
+            List<object> list = new List<object>();
+            list.Add(StringTutorial.classobjecttuto());
+            return Ok(list);
+        }
+
+
     }
 }
