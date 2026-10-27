@@ -514,6 +514,14 @@ namespace WebWomen.Controllers
             return Ok(list);
         }
 
+        [HttpGet("methodstuto")]
+        public ActionResult<List<object>> MethodsTutomethod()
+        {
+            List<object> list = new List<object>();
+            list.Add(StringTutorial.methodstuto());
+            return Ok(list);
+        }
+
 
     }
 }
