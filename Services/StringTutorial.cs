@@ -207,5 +207,46 @@ namespace WebWomen.Services
 
         }
 
+        public static List<object> methodstuto()
+        {
+            List<object> lt = new List<object>();
+
+            // Methods in C#
+            /*
+             * Methods are blocks of code that perform a specific task. 
+             * A method allows us to reuse code, improving both efficiency and organization
+             */
+
+            // callstack example 
+            CallStackExample.A(); // Start with method A
+            CallStackExample.D(); // Then call D
+
+            //Different Ways to Create Methods
+            //Instance Method
+            Riky riky = new Riky();
+            lt.Add("Instance Method");
+            lt.Add(riky.Hello());
+            lt.Add("User-defined Methods");
+            // User-defined Methods
+            lt.Add(riky.HelloPre());
+
+            lt.Add("Static Method");
+            //Static Method
+            lt.Add(Mac.Hello());
+            lt.Add(Test.Hello());
+
+            //Calling an Abstract Method
+            RikyClass rikyClass = new RikyClass();
+            rikyClass.Check("Riky");
+
+            lt.Add("Predefined Methods");
+            // Predefined Methods
+            RikyClass rikyClassp = new RikyClass();
+            lt.Add(rikyClassp.GetHashCode());
+
+            return lt;
+
+        }
+
     }
 }
