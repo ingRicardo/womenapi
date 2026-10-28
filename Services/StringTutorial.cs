@@ -248,5 +248,57 @@ namespace WebWomen.Services
 
         }
 
+        public static List<object> consructorstuto()
+        {
+            List<object> lt = new List<object>();
+            // Constructors in C#
+            /*
+             * A constructor is a special method that is automatically called when an object of a class is created. 
+             * It is used to initialize the state of the object and set its initial values.
+             */
+
+            //1 Default Constructor
+            lt.Add("Default Constructor");
+            StudentOne s = new StudentOne();
+            lt.Add(s.name == null ? "null" : s.name);
+            lt.Add(s.age);
+
+            //2 Parameterized Constructor
+            lt.Add("Parameterized Constructor");
+            RikyOne r = new RikyOne("Riky", 68);
+            lt.Add(r.Display());
+
+            //3 Copy Constructor
+            lt.Add("Copy Constructor");
+
+            lt.Add("First Object");
+
+            RikyThree r1 = new RikyThree("Sydney", 68);
+            lt.Add("r1Name: " + r1.name +" and r1Id: " + r1.id);
+
+            RikyThree r2 = new RikyThree(r1);
+
+            lt.Add("Copy Constructor used Second Object");
+            lt.Add("r2Name: " + r2.name +" and r2Id: " + r2.id);
+
+            //4 Static Constructor
+            lt.Add("Static Constructor");
+            RikyFour.DisplayMessage();
+
+            //5 Private Constructor
+            lt.Add("Private Constructor");
+            //RikyFive r5 = new RikyFive();
+            lt.Add(RikyFive.DisplayMessage());
+
+            //Constructor Overloading
+            lt.Add("Constructor Overloading");
+
+            RikySix r60 = new RikySix("Sydney");
+            RikySix r61 = new RikySix("Galoc", 28);
+            RikySix r62 = new RikySix(325614567L);
+
+
+            return lt;
+        }
     }
 }
