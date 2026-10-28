@@ -522,6 +522,12 @@ namespace WebWomen.Controllers
             return Ok(list);
         }
 
-
+        [HttpGet("constructorstuto")]
+        public ActionResult<List<object>> ConstructorsTuto()
+        {
+            List<object> list = new List<object>();
+            list.Add(StringTutorial.consructorstuto());
+            return Ok(list);
+        }
     }
 }
