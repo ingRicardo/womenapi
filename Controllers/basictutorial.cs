@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using WebWomen.Data;
 using WebWomen.Models;
 using WebWomen.Services;
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using static WebWomen.Services.ReturnDelegateDemo;
 namespace WebWomen.Controllers
 {
@@ -402,7 +399,7 @@ namespace WebWomen.Controllers
 
 
         // Three-Dimensional Array with User input (e.g., 2x3x4 dimensions)
-       // using an example dimension of 2x3x4: 2 slices, 3 rows per slice, and 4 columns per row).
+        // using an example dimension of 2x3x4: 2 slices, 3 rows per slice, and 4 columns per row).
         //This version maintains the jagged array structure(int[][][]) to ensure full compatibility with System.Text.Json
 
         [HttpPost("process-3d-array-user-input")]
@@ -464,7 +461,7 @@ namespace WebWomen.Controllers
             List<object> list = new List<object>();
 
             list.Add(ArrayTuto.jaggedAarrDecla());
- 
+
             list.Add(ArrayTuto.modifyarray());
 
             return Ok(list);
@@ -493,7 +490,7 @@ namespace WebWomen.Controllers
         public ActionResult<List<object>> StringTuto()
         {
             List<object> list = new List<object>();
-            list.Add( StringTutorial.stringbasictuto());
+            list.Add(StringTutorial.stringbasictuto());
             return Ok(list);
         }
 
@@ -529,5 +526,14 @@ namespace WebWomen.Controllers
             list.Add(StringTutorial.consructorstuto());
             return Ok(list);
         }
+
+        [HttpGet("destructormethod")]
+        public ActionResult<List<object>> destrucormethod()
+        {
+            List<object> list = new List<object>();
+            list.Add(DestructorTuto.destructorcall());
+            return Ok(list);
+        }
+
     }
 }
