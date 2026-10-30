@@ -535,5 +535,13 @@ namespace WebWomen.Controllers
             return Ok(list);
         }
 
+
+        [HttpGet("propertytuto")]
+        public ActionResult<List<object>> PropertyTutomethods()
+        {
+            List<object> list = new List<object>();
+            list.Add( PropertyTuto.propertymethod());
+            return Ok(list);
+        }
     }
 }
