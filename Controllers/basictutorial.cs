@@ -543,5 +543,21 @@ namespace WebWomen.Controllers
             list.Add( PropertyTuto.propertymethod());
             return Ok(list);
         }
+
+        [HttpGet("accessmodtuto")]
+        public ActionResult<List<object>> AccessModTutomethods()
+        {
+            List<object> list = new List<object>();
+            list.Add("Private Access Modifier ===> "+ AccessModTuto.GetExamples()[0]);
+            list.Add("Internal Access Modifier ===> "+ AccessModTuto.GetExamples()[1]);
+            list.Add("Protected Access Modifier ===> "+ AccessModTuto.GetExamples()[2]);
+            list.Add("Public Access Modifier ===> " + AccessModTuto.GetExamples()[3]);
+            list.Add("Protected Internal Access Modifier ===> " + AccessModTuto.GetExamples()[4]);
+            list.Add("Private Protected Access Modifier ===> " + AccessModTuto.GetExamples()[5]);
+
+            return Ok(list);
+        }
+
+
     }
 }
