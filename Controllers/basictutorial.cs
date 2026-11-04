@@ -558,6 +558,15 @@ namespace WebWomen.Controllers
             return Ok(list);
         }
 
+        [HttpGet("keywordtuto")]
+        public ActionResult<List<object>> keywordsTuto()
+        {
+            List<object> list = new List<object>();
+            list.Add(KeywordExamples.GetKeywordExamples());
+
+            return Ok(list);
+
+        }
 
     }
 }
