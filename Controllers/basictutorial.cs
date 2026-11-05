@@ -568,5 +568,44 @@ namespace WebWomen.Controllers
 
         }
 
+        [HttpGet("statickeywordtuto")]
+        public ActionResult<List<object>> staticKeywordTuto()
+        {
+            List<object> list = new List<object>();
+            /*
+             * The static keyword is used to define members that belong 
+             * to a class or structure rather than to a specific object. 
+             * 
+             * Static members are shared across all instances of a class and 
+             * can be accessed using the class name without creating an object.
+             */
+
+
+            // static variable is shared between multiple Student objects.
+            list.Add("Static Variables (Static Fields) ===> "+ StatucTuto.exampleStatic());
+
+
+            // A static constructor initializes static data or performs initialization tasks for a class.
+            // It is called automatically by the runtime before the class is first used, subject to C# initialization rules.
+
+            list.Add("Static Constructor Value of a ===> " + RikyStatic.a);
+            list.Add("Static Constructor Value of b ===> " + RikyStatic.b);
+
+
+            //A static method belongs to the class rather than to an individual object.
+            //It can be called using the class name without creating an instance.
+            list.Add("Static Method Value of a ===> " + RikyStaticMetdh.a);
+
+            //A class declared inside another class can be marked static.
+            //A static nested class cannot be instantiated and can contain only static members. It can be accessed using the outer class name.
+            list.Add("Static Nested Class Method ===> " + Outer.Inner.Show());
+
+            return Ok(list);
+
+ 
+
+
+        }
+
     }
 }
