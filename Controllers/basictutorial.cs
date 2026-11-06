@@ -607,5 +607,19 @@ namespace WebWomen.Controllers
 
         }
 
+        /*
+        Encapsulation
+         */
+
+        [HttpGet("encapsulationtuto")]
+        public ActionResult<List<object>> encapsulationTuto()
+        {
+            List<object> list = new List<object>();
+            list.Add(EncapsuExamples.getEncapsulationExample());
+
+            return Ok(list);
+        }
+
+
     }
 }
