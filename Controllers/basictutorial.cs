@@ -620,6 +620,14 @@ namespace WebWomen.Controllers
             return Ok(list);
         }
 
+        // Polymorphism
+        [HttpGet("polymorphismtuto")]
+        public ActionResult<List<object>> polymorphismTuto()
+        {
+            List<object> list = new List<object>();
+            list.Add(PolymorphismService.getPolyObj());
+            return Ok(list);
+        }   
 
     }
 }
