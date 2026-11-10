@@ -627,7 +627,15 @@ namespace WebWomen.Controllers
             List<object> list = new List<object>();
             list.Add(PolymorphismService.getPolyObj());
             return Ok(list);
-        }   
+        }
 
+        // Abstraction
+        [HttpGet("abstractiontuto")]
+        public ActionResult<List<object>> abstractionTuto()
+        {
+            List<object> list = new List<object>();
+            list.Add(AbstractionService.AbstractionExample());
+            return Ok(list);
+        }
     }
 }
