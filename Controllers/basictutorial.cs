@@ -637,5 +637,14 @@ namespace WebWomen.Controllers
             list.Add(AbstractionService.AbstractionExample());
             return Ok(list);
         }
+
+        //Interface
+        [HttpGet("interfaceservice")]
+        public ActionResult<List<Object>> interfaceService()
+        {
+            List<Object> list = new List<Object>();
+            list.Add(InterfaceService.GetInterfaceService());
+            return Ok(list);
+        }
     }
 }
