@@ -646,5 +646,14 @@ namespace WebWomen.Controllers
             list.Add(InterfaceService.GetInterfaceService());
             return Ok(list);
         }
+
+        //List
+        [HttpGet("listservice")]
+        public ActionResult<List<Object>> listService()
+        {
+            List<Object> list = new List<Object>();
+            list.Add(ListService.GetListExamples());
+            return Ok(list);
+        }   
     }
 }
